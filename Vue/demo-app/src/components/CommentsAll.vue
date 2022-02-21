@@ -20,9 +20,9 @@
               {{ comment.content}}
             </div>
             <div class="actions"> 
-              <span>Like</span> <span @click="addReply(comment.id)">Reply</span>
+              <span>Like</span> <span @click="addReply(comment)">Reply</span>
             </div>
-            <div v-if="reply">
+            <div v-if="comment.reply" class="comment-reply">
               <AddComment :id = comment.id />
             </div>
           </div>
@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      comments:{},
+      comments:[],
       reply: false,
     }
   },
@@ -55,9 +55,9 @@ export default {
       axios.get('http://127.0.0.1:8001/api/comments').then(response => 
         (this.comments = response.data.data));
     },
-    addReply(id){
-      this.reply = !this.reply;
-      console.log(id);
+    addReply(comment){
+      comment.reply = !comment.reply;
+      // console.log(id);
     }
   }
  
@@ -77,6 +77,7 @@ export default {
   img {
     border-radius: 50%;
     width: 5rem;
+    align-self: flex-start;
   }
   .comments {
     display: flex;
@@ -95,16 +96,19 @@ export default {
   .author {
     font-weight: 600;
     margin-right: 1rem;
-
   }
 
   .actions {
     position: absolute;
-    margin-top:1rem
+    margin-top:1rem;
+    font-weight: 550;
   }
   .actions > span:hover{
     text-decoration: underline;
     cursor: pointer;
   }
-
+  .comment-reply {
+    z-index: 9;
+    margin-top: 3rem
+  }
 </style>

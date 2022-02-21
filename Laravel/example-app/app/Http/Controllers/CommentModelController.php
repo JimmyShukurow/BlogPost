@@ -16,6 +16,7 @@ class CommentModelController extends Controller
 
     public function insert(CommentRequest $request)
     {
+        
         $comment = CommentModel::create($request->validated());
 
         return $comment;

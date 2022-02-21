@@ -14,6 +14,7 @@ class CreateCommentModelsTable extends Migration
             $table->string('author', 150);
             $table->string('content',500);
             $table->unsignedInteger('parent_id')->nullable();
+            $table->unsignedInteger('likes')->nullable();
             $table->timestamps();
         });
     }

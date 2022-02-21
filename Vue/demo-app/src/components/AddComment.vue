@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-    .add-comment {
+  .add-comment {
     margin: 1rem;
   }
   main {

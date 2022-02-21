@@ -11,7 +11,8 @@ class CommentRequest extends FormRequest
     {
         return [
             'author' => 'required| max:150',
-            'content' => 'required| max:500'
+            'content' => 'required| max:500',
+            'parent_id' => 'nullable'
         ];
     }
 }
