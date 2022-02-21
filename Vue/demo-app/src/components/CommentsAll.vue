@@ -8,7 +8,7 @@
     </div>
 
     <hr>
-      <AddComment/>
+      <AddComment @refresh="refreshComments"/>
     <hr>
     <div class="comments" v-for=" comment in comments" :key="comment.id">
           <img src="../assets/images/avatarsample.png" alt="guest">
@@ -23,7 +23,7 @@
               <span>Like</span> <span @click="addReply(comment)">Reply</span>
             </div>
             <div v-if="comment.reply" class="comment-reply">
-              <AddComment :id = comment.id />
+              <AddComment  @refresh="refreshComments"/>
             </div>
           </div>
     </div>
@@ -47,12 +47,12 @@ export default {
     }
   },
   created(){
-    axios.get('http://127.0.0.1:8001/api/comments').then(response => 
+    axios.get('http://127.0.0.1:8000/api/comments').then(response => 
       (this.comments = response.data.data));
   },
   methods:{
-    addComment(){
-      axios.get('http://127.0.0.1:8001/api/comments').then(response => 
+    refreshComments(){
+      axios.get('http://127.0.0.1:8000/api/comments').then(response => 
         (this.comments = response.data.data));
     },
     addReply(comment){

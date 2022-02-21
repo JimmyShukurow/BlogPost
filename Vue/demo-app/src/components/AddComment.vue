@@ -23,7 +23,9 @@ export default {
     },
     methods: {
     addComment(){
-      axios.post('http://127.0.0.1:8001/api/comments', this.comment ).then();
+      axios.post('http://127.0.0.1:8000/api/comments', this.comment ).then(response => {
+        if (response.status > 200) this.$emit('refresh');
+      });
     }
   }
 }
