@@ -51,6 +51,8 @@
 
 .blogText {
     font-size: 20px;
+    text-align: justify;
+    margin-bottom: 5rem;
 }
 
 </style>

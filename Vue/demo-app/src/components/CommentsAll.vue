@@ -57,7 +57,6 @@ export default {
     },
     addReply(comment){
       comment.reply = !comment.reply;
-      // console.log(id);
     }
   }
  
@@ -110,5 +109,9 @@ export default {
   .comment-reply {
     z-index: 9;
     margin-top: 3rem
+  }
+  .content {
+    display: flex;
+    text-align: left;
   }
 </style>
