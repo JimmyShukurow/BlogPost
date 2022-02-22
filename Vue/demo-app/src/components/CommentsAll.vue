@@ -23,7 +23,15 @@
               <span>Like</span> <span @click="addReply(comment)">Reply</span>
             </div>
             <div v-if="comment.reply" class="comment-reply">
-              <AddComment  @refresh="refreshComments"/>
+              <AddComment  @refresh="refreshComments" :id = comment.id />
+            </div>
+            <div v-if="comment.comment.length > 0">
+              <div class="childComments">
+                <img src="../assets/images/avatarsample.png" alt="guest">
+                <div v-for="childComment in comment.comment" :key="childComment.id">
+                  {{childComment.content}}
+                </div> 
+              </div>
             </div>
           </div>
     </div>
@@ -73,7 +81,7 @@ export default {
   .title {
     left: 1rem;
   }
-  img {
+  .comments > img {
     border-radius: 50%;
     width: 5rem;
     align-self: flex-start;
@@ -98,13 +106,17 @@ export default {
   }
 
   .actions {
-    position: absolute;
+    display:flex;
     margin-top:1rem;
     font-weight: 550;
+  }
+  .actions > span {
+    margin-right: 1rem;
   }
   .actions > span:hover{
     text-decoration: underline;
     cursor: pointer;
+
   }
   .comment-reply {
     z-index: 9;
@@ -114,4 +126,15 @@ export default {
     display: flex;
     text-align: left;
   }
+  .childcomments {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 3rem;
+    align-self: flex-start;
+  }
+  
 </style>

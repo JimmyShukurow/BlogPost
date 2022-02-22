@@ -13,17 +13,22 @@
 <script>
 import axios from 'axios'
 export default {
+  props:{
+    id: Number,
+  },
     data() {
         return{
             comment: {
             author:'',
-            content: ''
+            content: '',
+            parent_id: null
             },
         }
     },
     methods: {
     addComment(){
-      axios.post('http://127.0.0.1:8000/api/comments', this.comment ).then(response => {
+      this.comment.parent_id = this.id;
+      axios.post('http://127.0.0.1:8000/api/comments', this.comment).then(response => {
         if (response.status > 200) {
           this.$emit('refresh');
           this.comment.author = '';

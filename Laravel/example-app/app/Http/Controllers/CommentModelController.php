@@ -11,7 +11,8 @@ class CommentModelController extends Controller
 {
     public function index()
     {
-        return CommentResource::collection(CommentModel::orderBy('created_at', 'desc')->get());
+        $comments = CommentModel::with('childComment')->where('parent_id', null)->orderBy('created_at', 'desc')->get();
+        return CommentResource::collection($comments);
     }
 
     public function insert(CommentRequest $request)

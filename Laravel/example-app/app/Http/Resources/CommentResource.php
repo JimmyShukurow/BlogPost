@@ -14,6 +14,7 @@ class CommentResource extends JsonResource
             'id' => $this->id,
             'author' => $this->author,
             'content' => $this->content,
+            'comment' => $this->childComment,
             'created_at' => $this->created_at->diffForHumans(),
             'reply' => false
         ];

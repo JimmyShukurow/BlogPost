@@ -13,4 +13,8 @@ class CommentModel extends Model
 
     protected $guarded = [];
 
+    public function childComment()
+    {
+        return $this->hasMany(CommentModel::class, 'parent_id', 'id');
+    }
 }
